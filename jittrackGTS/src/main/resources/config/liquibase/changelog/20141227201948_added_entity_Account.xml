@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Account.
+    -->
+    <changeSet id="20141227201948" author="jhipster">
+        <createTable tableName="T_ACCOUNT">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="accounttype" type="integer"/>
+            <column name="allownotify" type="bit"/>
+            <column name="allowwebservice" type="bit"/>
+            <column name="autoadddevices" type="bit"/>
+            <column name="contactemail" type="varchar(255)"/>
+            <column name="contactname" type="varchar(255)"/>
+            <column name="contactphone" type="varchar(255)"/>
+            <column name="expirationtime" type="bigint"/>
+            <column name="emailproperties" type="varchar(255)"/>
+            <column name="economyunits" type="integer"/>
+            <column name="distanceunits" type="integer"/>
+            <column name="displayname" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="defaultuser" type="varchar(255)"/>
+            <column name="creationtime" type="bigint"/>
+            <column name="currencyunits" type="integer"/>
+            <column name="dcspropertiesid" type="varchar(255)"/>
+            <column name="fuelcostperliter" type="decimal(10,2)"/>
+            <column name="geocodermode" type="integer"/>
+            <column name="isactive" type="bit"/>
+            <column name="isbordercrossing" type="bit"/>
+            <column name="lastlogintime" type="bigint"/>
+            <column name="lastupdatetime" type="bigint"/>
+            <column name="latlonformat" type="integer"/>
+            <column name="maximumdevices" type="integer"/>
+            <column name="maxpingcount" type="integer"/>
+            <column name="notes" type="varchar(255)"/>
+            <column name="notifyemail" type="varchar(255)"/>
+            <column name="passwdchangetime" type="bigint"/>
+            <column name="passwdquerytime" type="bigint"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="pressureunits" type="integer"/>
+            <column name="privatelabelname" type="varchar(255)"/>
+            <column name="retainedeventage" type="integer"/>
+            <column name="smsenabled" type="bit"/>
+            <column name="smsproperties" type="varchar(255)"/>
+            <column name="speedunits" type="integer"/>
+            <column name="temperatureunits" type="integer"/>
+            <column name="timezone" type="varchar(255)"/>
+            <column name="totalpingcount" type="integer"/>
+            <column name="volumeunits" type="integer"/>
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,358 @@
+<div>
+
+    <h2>Accounts</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveAccountModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> Create a new Account
+    </button>
+    <div class="modal fade" id="saveAccountModal" tabindex="-1" role="dialog" aria-labelledby="myAccountLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myAccountLabel">Create or edit a Account</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="account.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>AccountType</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.accountType">
+                        </div>
+                        <div class="form-group">
+                            <label>AllowNotify</label>
+                            <input type="checkbox" class="form-control"
+                                   ng-model="account.allowNotify">
+                        </div>
+                        <div class="form-group">
+                            <label>AllowWebService</label>
+                            <input type="checkbox" class="form-control"
+                                   ng-model="account.allowWebService">
+                        </div>
+                        <div class="form-group">
+                            <label>AutoAddDevices</label>
+                            <input type="checkbox" class="form-control"
+                                   ng-model="account.autoAddDevices">
+                        </div>
+                        <div class="form-group">
+                            <label>ContactEmail</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.contactEmail">
+                        </div>
+                        <div class="form-group">
+                            <label>ContactName</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.contactName">
+                        </div>
+                        <div class="form-group">
+                            <label>ContactPhone</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.contactPhone">
+                        </div>
+                        <div class="form-group">
+                            <label>ExpirationTime</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.expirationTime">
+                        </div>
+                        <div class="form-group">
+                            <label>EmailProperties</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.emailProperties">
+                        </div>
+                        <div class="form-group">
+                            <label>EconomyUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.economyUnits">
+                        </div>
+                        <div class="form-group">
+                            <label>DistanceUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.distanceUnits">
+                        </div>
+                        <div class="form-group">
+                            <label>DisplayName</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.displayName">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.description">
+                        </div>
+                        <div class="form-group">
+                            <label>DefaultUser</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.defaultUser">
+                        </div>
+                        <div class="form-group">
+                            <label>CreationTime</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.creationTime">
+                        </div>
+                        <div class="form-group">
+                            <label>CurrencyUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.currencyUnits">
+                        </div>
+                        <div class="form-group">
+                            <label>DcsPropertiesID</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.dcsPropertiesID">
+                        </div>
+                        <div class="form-group">
+                            <label>FuelCostPerLiter</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.fuelCostPerLiter">
+                        </div>
+                        <div class="form-group">
+                            <label>GeocoderMode</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.geocoderMode">
+                        </div>
+                        <div class="form-group">
+                            <label>IsActive</label>
+                            <input type="checkbox" class="form-control"
+                                   ng-model="account.isActive">
+                        </div>
+                        <div class="form-group">
+                            <label>IsBorderCrossing</label>
+                            <input type="checkbox" class="form-control"
+                                   ng-model="account.isBorderCrossing">
+                        </div>
+                        <div class="form-group">
+                            <label>LastLoginTime</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.lastLoginTime">
+                        </div>
+                        <div class="form-group">
+                            <label>LastUpdateTime</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.lastUpdateTime">
+                        </div>
+                        <div class="form-group">
+                            <label>LatLonFormat</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.latLonFormat">
+                        </div>
+                        <div class="form-group">
+                            <label>MaximumDevices</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.maximumDevices">
+                        </div>
+                        <div class="form-group">
+                            <label>MaxPingCount</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.maxPingCount">
+                        </div>
+                        <div class="form-group">
+                            <label>Notes</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.notes">
+                        </div>
+                        <div class="form-group">
+                            <label>NotifyEmail</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.notifyEmail">
+                        </div>
+                        <div class="form-group">
+                            <label>PasswdChangeTime</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.passwdChangeTime">
+                        </div>
+                        <div class="form-group">
+                            <label>PasswdQueryTime</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.passwdQueryTime">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.password">
+                        </div>
+                        <div class="form-group">
+                            <label>PressureUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.pressureUnits">
+                        </div>
+                        <div class="form-group">
+                            <label>PrivateLabelName</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.privateLabelName">
+                        </div>
+                        <div class="form-group">
+                            <label>RetainedEventAge</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.retainedEventAge">
+                        </div>
+                        <div class="form-group">
+                            <label>SmsEnabled</label>
+                            <input type="checkbox" class="form-control"
+                                   ng-model="account.smsEnabled">
+                        </div>
+                        <div class="form-group">
+                            <label>SmsProperties</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.smsProperties">
+                        </div>
+                        <div class="form-group">
+                            <label>SpeedUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.speedUnits">
+                        </div>
+                        <div class="form-group">
+                            <label>TemperatureUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.temperatureUnits">
+                        </div>
+                        <div class="form-group">
+                            <label>TimeZone</label>
+                            <input type="text" class="form-control"
+                                   ng-model="account.timeZone">
+                        </div>
+                        <div class="form-group">
+                            <label>TotalPingCount</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.totalPingCount">
+                        </div>
+                        <div class="form-group">
+                            <label>VolumeUnits</label>
+                            <input type="number" class="form-control"
+                                   ng-model="account.volumeUnits">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>AccountType</th>
+                    <th>AllowNotify</th>
+                    <th>AllowWebService</th>
+                    <th>AutoAddDevices</th>
+                    <th>ContactEmail</th>
+                    <th>ContactName</th>
+                    <th>ContactPhone</th>
+                    <th>ExpirationTime</th>
+                    <th>EmailProperties</th>
+                    <th>EconomyUnits</th>
+                    <th>DistanceUnits</th>
+                    <th>DisplayName</th>
+                    <th>Description</th>
+                    <th>DefaultUser</th>
+                    <th>CreationTime</th>
+                    <th>CurrencyUnits</th>
+                    <th>DcsPropertiesID</th>
+                    <th>FuelCostPerLiter</th>
+                    <th>GeocoderMode</th>
+                    <th>IsActive</th>
+                    <th>IsBorderCrossing</th>
+                    <th>LastLoginTime</th>
+                    <th>LastUpdateTime</th>
+                    <th>LatLonFormat</th>
+                    <th>MaximumDevices</th>
+                    <th>MaxPingCount</th>
+                    <th>Notes</th>
+                    <th>NotifyEmail</th>
+                    <th>PasswdChangeTime</th>
+                    <th>PasswdQueryTime</th>
+                    <th>Password</th>
+                    <th>PressureUnits</th>
+                    <th>PrivateLabelName</th>
+                    <th>RetainedEventAge</th>
+                    <th>SmsEnabled</th>
+                    <th>SmsProperties</th>
+                    <th>SpeedUnits</th>
+                    <th>TemperatureUnits</th>
+                    <th>TimeZone</th>
+                    <th>TotalPingCount</th>
+                    <th>VolumeUnits</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="account in accounts">
+                    <td>{{account.id}}</td>
+                    <td>{{account.accountType}}</td>
+                    <td>{{account.allowNotify}}</td>
+                    <td>{{account.allowWebService}}</td>
+                    <td>{{account.autoAddDevices}}</td>
+                    <td>{{account.contactEmail}}</td>
+                    <td>{{account.contactName}}</td>
+                    <td>{{account.contactPhone}}</td>
+                    <td>{{account.expirationTime}}</td>
+                    <td>{{account.emailProperties}}</td>
+                    <td>{{account.economyUnits}}</td>
+                    <td>{{account.distanceUnits}}</td>
+                    <td>{{account.displayName}}</td>
+                    <td>{{account.description}}</td>
+                    <td>{{account.defaultUser}}</td>
+                    <td>{{account.creationTime}}</td>
+                    <td>{{account.currencyUnits}}</td>
+                    <td>{{account.dcsPropertiesID}}</td>
+                    <td>{{account.fuelCostPerLiter}}</td>
+                    <td>{{account.geocoderMode}}</td>
+                    <td>{{account.isActive}}</td>
+                    <td>{{account.isBorderCrossing}}</td>
+                    <td>{{account.lastLoginTime}}</td>
+                    <td>{{account.lastUpdateTime}}</td>
+                    <td>{{account.latLonFormat}}</td>
+                    <td>{{account.maximumDevices}}</td>
+                    <td>{{account.maxPingCount}}</td>
+                    <td>{{account.notes}}</td>
+                    <td>{{account.notifyEmail}}</td>
+                    <td>{{account.passwdChangeTime}}</td>
+                    <td>{{account.passwdQueryTime}}</td>
+                    <td>{{account.password}}</td>
+                    <td>{{account.pressureUnits}}</td>
+                    <td>{{account.privateLabelName}}</td>
+                    <td>{{account.retainedEventAge}}</td>
+                    <td>{{account.smsEnabled}}</td>
+                    <td>{{account.smsProperties}}</td>
+                    <td>{{account.speedUnits}}</td>
+                    <td>{{account.temperatureUnits}}</td>
+                    <td>{{account.timeZone}}</td>
+                    <td>{{account.totalPingCount}}</td>
+                    <td>{{account.volumeUnits}}</td>
+                    <td>
+                        <button type="submit"
+                                ng-click="update(account.id)"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(account.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
