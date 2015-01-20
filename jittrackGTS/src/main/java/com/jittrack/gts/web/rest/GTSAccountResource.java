@@ -1,18 +1,25 @@
 package com.jittrack.gts.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.jittrack.gts.domain.Account;
-import com.jittrack.gts.repository.AccountRepository;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import com.codahale.metrics.annotation.Timed;
+import com.jittrack.gts.domain.Account;
+import com.jittrack.gts.repository.AccountRepository;
 
 /**
  * REST controller for managing Account.
@@ -45,6 +52,7 @@ public class GTSAccountResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @PreAuthorize("hasPermission(null, 'allowDoSomething')")
     public List<Account> getAll() {
         log.debug("REST request to get all Accounts");
         return accountRepository.findAll();

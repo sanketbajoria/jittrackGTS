@@ -1,0 +1,39 @@
+<div class="center-block login">
+	<form role="form" name="loginForm" ng-submit="login(loginForm)" novalidate>
+		<div class="header">{{ 'login.title' | translate}}</div>
+		<div class="has-error" ng-show="submitted">
+        <p class="help-block" ng-show="(loginForm.id.$error.required || loginForm.password.$error.required || loginForm.password.$language.required)">
+           {{ 'login.error1' | translate}}
+        </p>              
+        <p class="help-block" ng-show="errors.other">{{ errors.other | translate}}&nbsp;</p>
+      </div>
+
+		<div class="form-group left-inner-addon" ng-class="{'has-error': loginForm.id.$error.required && submitted}">
+  			<i class="fa fa-user fa-lg left lg"></i>
+  			<input class="form-control input-lg" name="id" type="text" placeholder="{{ 'login.account' | translate}}" ng-model="user.account" ng-change="change()" required/>
+		</div>
+		<div class="form-group left-inner-addon" ng-class="{'has-error': loginForm.id.$error.required && submitted}">
+  			<i class="fa fa-user fa-lg left lg"></i>
+  			<input class="form-control input-lg" name="id" type="text" placeholder="{{ 'login.user' | translate}}" ng-model="user.user" ng-change="change()" required/>
+		</div>
+		<div class="form-group left-inner-addon" ng-class="{'has-error': loginForm.password.$error.required && submitted}">
+  			<i class="fa fa-lock fa-lg left lg"></i>
+  			<input class="form-control input-lg" type="password" name="password" placeholder="{{ 'login.password' | translate }}" ng-model="user.password" ng-change="change()" required/>
+		</div>
+		<div class="form-group left-inner-addon" ng-class="{'has-error': loginForm.language.$invalid && submitted}">
+  			<i class="fa fa-language fa-lg left lg"></i>
+  			<input class="form-control input-lg" type="text"  name="language" typeahead-editable=false typeahead-on-select='changeLang($item)' typeahead-dropdown='icon' typeahead="lang as lang.name for lang in languages | filter:$viewValue" placeholder="{{ 'login.language' | translate }}" ng-model="user.language" required/>
+		</div>
+		<div class="form-group" style="float:left">
+    		<label>
+      			<input type="checkbox"> {{ 'login.rememberme' | translate}}
+    		</label>
+  		</div>
+		<div style="float:right" class="form-group"><a href="#">{{ 'login.fyp' | translate}}</a></div>
+		<div class="form-group" style="clear:both">
+      		<button type="submit" class="btn btn-success btn-lg btn-block">{{ 'login.loginBtn' | translate}}</button>
+			
+  		</div>
+		
+	</form>
+</div>
