@@ -8,12 +8,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.endpoint.FrameworkEndpointHandlerMapping;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 import org.springframework.security.acls.AclPermissionEvaluator;
 import org.springframework.security.acls.domain.EhCacheBasedAclCache;
@@ -23,6 +26,7 @@ import org.springframework.security.acls.domain.DefaultPermissionGrantingStrateg
 import org.springframework.security.acls.domain.AclAuthorizationStrategyImpl;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.acls.jdbc.BasicLookupStrategy;
+
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
@@ -63,6 +67,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/websocket/activity");
     }
 
+    
+	/*@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		AuthorizationServerSecurityConfigurer configurer = new AuthorizationServerSecurityConfigurer();
+		FrameworkEndpointHandlerMapping handlerMapping = endpoints.oauth2EndpointHandlerMapping();
+		http.setSharedObject(FrameworkEndpointHandlerMapping.class, handlerMapping);
+		configure(configurer);
+		http.apply(configurer);
+		String tokenEndpointPath = handlerMapping.getServletPath("/oauth/token");
+		String tokenKeyPath = handlerMapping.getServletPath("/oauth/token_key");
+		String checkTokenPath = handlerMapping.getServletPath("/oauth/check_token");
+		// @formatter:off
+		http
+        	.authorizeRequests()
+            	.antMatchers(tokenEndpointPath).fullyAuthenticated()
+            	.antMatchers(tokenKeyPath).access(configurer.getTokenKeyAccess())
+            	.antMatchers(checkTokenPath).access(configurer.getCheckTokenAccess())
+        .and()
+        	.requestMatchers()
+            	.antMatchers(tokenEndpointPath, tokenKeyPath, checkTokenPath);
+		// @formatter:on
+		http.setSharedObject(ClientDetailsService.class, clientDetailsService);
+	}
+    */
 	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -77,7 +105,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
     private static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 
-        @Inject
+     /*   @Inject
         private DataSource dataSource;
     	
         @Bean
@@ -89,9 +117,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	public AclAuthorizationStrategyImpl aclAuthorizationStrategyImplBean()  {
     		return new AclAuthorizationStrategyImpl(new SimpleGrantedAuthority("ROLE_ADMIN") , 
     				new SimpleGrantedAuthority("ROLE_ADMIN") , new SimpleGrantedAuthority("ROLE_ADMIN"));
-    	}
+    	}*/
         
-    	@Bean
+    	/*@Bean
     	public EhCacheBasedAclCache ehCacheBasedAclCacherBean()  {
     		
     		//EhCacheFactoryBean factoryBean= new EhCacheFactoryBean();
@@ -115,13 +143,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     		return new BasicLookupStrategy(dataSource, ehCacheBasedAclCacherBean(), 
     				aclAuthorizationStrategyImplBean(), 
     				new DefaultPermissionGrantingStrategy(consoleAuditLoggerBean()));
-    	}
+    	}*/
         
         @Override
 		protected MethodSecurityExpressionHandler createExpressionHandler() {
 			DefaultMethodSecurityExpressionHandler handler = new OAuth2MethodSecurityExpressionHandler();
-			handler.setPermissionEvaluator(new AclPermissionEvaluator(
-					new JdbcMutableAclService(dataSource, basicLookupStrategyBean() , ehCacheBasedAclCacherBean())));
+			/*handler.setPermissionEvaluator(new AclPermissionEvaluator(
+					new JdbcMutableAclService(dataSource, basicLookupStrategyBean() , ehCacheBasedAclCacherBean())));*/
 			return handler;
 		}
     }
