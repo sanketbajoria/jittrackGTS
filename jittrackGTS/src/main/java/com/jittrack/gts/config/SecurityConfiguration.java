@@ -54,21 +54,97 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/websocket/activity");
     }
 
+
+    
+	/*@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		AuthorizationServerSecurityConfigurer configurer = new AuthorizationServerSecurityConfigurer();
+		FrameworkEndpointHandlerMapping handlerMapping = endpoints.oauth2EndpointHandlerMapping();
+		http.setSharedObject(FrameworkEndpointHandlerMapping.class, handlerMapping);
+		configure(configurer);
+		http.apply(configurer);
+		String tokenEndpointPath = handlerMapping.getServletPath("/oauth/token");
+		String tokenKeyPath = handlerMapping.getServletPath("/oauth/token_key");
+		String checkTokenPath = handlerMapping.getServletPath("/oauth/check_token");
+		// @formatter:off
+		http
+        	.authorizeRequests()
+            	.antMatchers(tokenEndpointPath).fullyAuthenticated()
+            	.antMatchers(tokenKeyPath).access(configurer.getTokenKeyAccess())
+            	.antMatchers(checkTokenPath).access(configurer.getCheckTokenAccess())
+        .and()
+        	.requestMatchers()
+            	.antMatchers(tokenEndpointPath, tokenKeyPath, checkTokenPath);
+		// @formatter:on
+		http.setSharedObject(ClientDetailsService.class, clientDetailsService);
+	}
+    */
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
+
     @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
     private static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
-        
-        @Inject
-        private PermissionEvaluator customPermissionEvaluator;
 
-        @Override
+
+     /*   @Inject
+        private DataSource dataSource;
+    	
+        @Bean
+    	public ConsoleAuditLogger consoleAuditLoggerBean()  {
+    		return new ConsoleAuditLogger();
+    	}
+        
+        @Bean
+    	public AclAuthorizationStrategyImpl aclAuthorizationStrategyImplBean()  {
+    		return new AclAuthorizationStrategyImpl(new SimpleGrantedAuthority("ROLE_ADMIN") , 
+    				new SimpleGrantedAuthority("ROLE_ADMIN") , new SimpleGrantedAuthority("ROLE_ADMIN"));
+    	}*/
+        
+    	/*@Bean
+    	public EhCacheBasedAclCache ehCacheBasedAclCacherBean()  {
+    		
+    		//EhCacheFactoryBean factoryBean= new EhCacheFactoryBean();
+    		net.sf.ehcache.CacheManager cacheManager = net.sf.ehcache.CacheManager.create();
+
+    		net.sf.ehcache.Cache cache = cacheManager.getCache("aclCache");
+    		//factoryBean.setCacheName("");
+    		//factoryBean.setca
+    	//	factoryBean.setCacheManager(new EhCacheManagerFactoryBean());
+    	//	AclAuthorizationStrategyImpl obAuth = new AclAuthorizationStrategyImpl(new SimpleGrantedAuthority("ROLE_ADMIN") , new SimpleGrantedAuthority("ROLE_ADMIN") , new SimpleGrantedAuthority("ROLE_ADMIN"));
+    		EhCacheBasedAclCache aclCache= new EhCacheBasedAclCache(cache , 
+    				new DefaultPermissionGrantingStrategy(consoleAuditLoggerBean()),
+    				aclAuthorizationStrategyImplBean() );
+    		
+    		return aclCache;
+    	}
+    	
+    	
+    	@Bean
+    	public BasicLookupStrategy basicLookupStrategyBean()  {
+    		return new BasicLookupStrategy(dataSource, ehCacheBasedAclCacherBean(), 
+    				aclAuthorizationStrategyImplBean(), 
+    				new DefaultPermissionGrantingStrategy(consoleAuditLoggerBean()));
+    	}*/
+        
+
+     /*   @Override
+		protected MethodSecurityExpressionHandler createExpressionHandler() {
+			DefaultMethodSecurityExpressionHandler handler = new OAuth2MethodSecurityExpressionHandler();
+			handler.setPermissionEvaluator(new AclPermissionEvaluator(
+					new JdbcMutableAclService(dataSource, basicLookupStrategyBean() , ehCacheBasedAclCacherBean())));
+			return handler;
+		}*/
+    	  @Inject
+          private PermissionEvaluator customPermissionEvaluator;
+    	
         protected MethodSecurityExpressionHandler createExpressionHandler() {
             return new CustomMethodSecurityExpressionHandler(customPermissionEvaluator);
         }
+
     }
 }

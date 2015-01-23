@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -23,8 +25,10 @@ import com.jittrack.gts.domain.Account;
 import com.jittrack.gts.repository.AccountRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static com.jittrack.gts.filter.core.SpecificationBuilder.filter;
 
 /**
  * Test class for the AccountResource REST controller.
@@ -272,6 +276,13 @@ public class AccountResourceTest {
         assertThat(testAccount.getTimeZone()).isEqualTo(DEFAULT_TIME_ZONE);
         assertThat(testAccount.getTotalPingCount()).isEqualTo(DEFAULT_TOTAL_PING_COUNT);
         assertThat(testAccount.getVolumeUnits()).isEqualTo(DEFAULT_VOLUME_UNITS);
+        
+        
+        Specification<Account> spec = filter("contactName", DEFAULT_CONTACT_NAME);
+
+        List<Account> users = accountRepository.findAll(spec);
+        assertNotNull(users);
+        assertEquals(1, users.size());
     }
 
     @Test
@@ -490,6 +501,16 @@ public class AccountResourceTest {
         assertThat(testAccount.getTotalPingCount()).isEqualTo(UPDATED_TOTAL_PING_COUNT);
         assertThat(testAccount.getVolumeUnits()).isEqualTo(UPDATED_VOLUME_UNITS);
     }
+    
+    
+ 	/*@Test
+ 	public void hasUsernameEqual() throws Exception {
+         Specification<Account> spec = filter("contactName", DEFAULT_CONTACT_NAME);
+
+         List<Account> users = accountRepository.findAll(spec);
+         assertNotNull(users);
+         assertEquals(1, users.size());
+ 	}*/
 
     @Test
     @Transactional
@@ -506,4 +527,7 @@ public class AccountResourceTest {
         List<Account> accounts = accountRepository.findAll();
         assertThat(accounts).hasSize(0);
     }
+    
+ 
+    
 }

@@ -6,7 +6,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>1.2.0.RELEASE</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <groupId>com.jittrack.gts</groupId>
@@ -46,54 +46,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-annotation</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-ehcache</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-graphite</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-healthchecks</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-json</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-jvm</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-servlet</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-servlets</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>metrics-healthchecks</artifactId>
-                    <groupId>io.dropwizard.metrics</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-hibernate4</artifactId>
@@ -160,16 +112,16 @@
             <version>${metrics-spring.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.codahale.metrics</groupId>
                     <artifactId>metrics-annotation</artifactId>
+                    <groupId>com.codahale.metrics</groupId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.codahale.metrics</groupId>
                     <artifactId>metrics-core</artifactId>
+                    <groupId>com.codahale.metrics</groupId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.codahale.metrics</groupId>
                     <artifactId>metrics-healthchecks</artifactId>
+                    <groupId>com.codahale.metrics</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -200,6 +152,54 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>${commons-lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-annotation</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-ehcache</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-graphite</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-healthchecks</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-json</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-jvm</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-servlet</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-servlets</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>metrics-healthchecks</artifactId>
+                    <groupId>io.dropwizard.metrics</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
@@ -236,8 +236,8 @@
             <version>${atmosphere-spring.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.atmosphere</groupId>
                     <artifactId>atmosphere-runtime</artifactId>
+                    <groupId>org.atmosphere</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -247,8 +247,8 @@
             <version>${hibernate.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>net.sf.ehcache</groupId>
                     <artifactId>ehcache-core</artifactId>
+                    <groupId>net.sf.ehcache</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -327,11 +327,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${spring-security-oauth2.version}</version>
-        </dependency>
         <!-- Spring Cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -340,27 +335,37 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-spring-service-connector</artifactId>
+            <artifactId>spring-cloud-localconfig-connector</artifactId>
             <version>${spring-cloud.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-localconfig-connector</artifactId>
+            <artifactId>spring-cloud-spring-service-connector</artifactId>
             <version>${spring-cloud.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>${spring-security-oauth2.version}</version>
+	    </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-acl</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
     </dependencies>
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <directory>src/main/resources</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
             </resource>
             <resource>
-                <directory>src/main/resources</directory>
                 <filtering>false</filtering>
+                <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>**/*.xml</exclude>
                 </excludes>
@@ -533,16 +538,6 @@
         </profile>
         <profile>
             <id>fast</id>
-            <properties>
-                <!-- log configuration -->
-                <logback.loglevel>DEBUG</logback.loglevel>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-undertow</artifactId>
-                </dependency>
-            </dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -556,15 +551,19 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <id>prod</id>
+            <properties>
+                <!-- log configuration -->
+                <logback.loglevel>DEBUG</logback.loglevel>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <artifactId>spring-boot-starter-undertow</artifactId>
                 </dependency>
             </dependencies>
+        </profile>
+        <profile>
+            <id>prod</id>
             <build>
                 <plugins>
                     <plugin>
@@ -625,6 +624,12 @@
                 <!-- log configuration -->
                 <logback.loglevel>INFO</logback.loglevel>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </dependency>
+            </dependencies>
         </profile>
     </profiles>
 </project>
